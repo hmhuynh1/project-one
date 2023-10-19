@@ -7,33 +7,38 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.CatBreed;
 
+import model.catBreeds;
 
 /**
- * Servlet implementation class DelateCat
+ * Servlet implementation class AddCatBreed
  */
-@WebServlet("/DelateCat")
-public class DelateCat extends HttpServlet {
+@WebServlet("/addCatBreed")
+public class AddCatBreed extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DelateCat() {
+    public AddCatBreed() {
         super();
         // TODO Auto-generated constructor stub
     }
 
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		catBreeds b = new catBreeds();
 		CatHelper helper = new CatHelper();
-		String breeds = request.getParameter("breeds");
-		CatBreed deleteable = helper.searchCatByBreed(breeds);
-		helper.delete(deleteable);
+		b.setBreeds(request.getParameter("breeds"));
+		b.setFactsAboutCats(request.getParameter("factsAboutCats"));
+		b.setCatSize(Double.valueOf(request.getParameter("catSize")));
+		helper.persist(b);
 		getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+		
 	}
-}
 
+}

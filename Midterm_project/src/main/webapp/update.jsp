@@ -9,11 +9,11 @@
 <body>
 
 
-	<form action="UpdateCat" method="post">
-		New Cat Breed: <input type="text" name="catBreedName" size="25" /><br><br>
+	<form action="updateCat" method="post">
+		New Cat Breed: <input type="text" name="breeds" size="25" /><br><br>
 		New Fast About Cat: <input type="text" name="factsAboutCats" size="25" /><br><br> 
 		New Cat Size: <input type="text" name="catSize" size="25" /><br><br>
-		Enter the current breed: <input type="text" name="breed"
+		Enter the current breed: <input type="text" name="oldName"
 			size="25"> <input type="submit" value="Update" />
 	</form>
 </body>

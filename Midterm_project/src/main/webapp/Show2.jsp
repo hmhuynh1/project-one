@@ -5,16 +5,16 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Cat Breeds</title>
+<title>Cat owner address</title>
 </head>
 <body>
 	CAT BREED, FACT, AND SIZE:
 	<table>
-		<c:forEach items="${requestScope.allCats}" var="currenBreed">
+		<c:forEach items="${requestScope.alLAddress}" var="currentOwner">
 			<tr>
-				<td>${currenBreed.breeds}|</td>
-				<td>${currenBreed.factsAboutCats}|</td>
-				<td>${currenBreed.catSize}</td>
+				<td>${currentOwner.catName}|</td>
+				<td>${currentOwner.ownerAddress}|</td>
+				<td>${currentOwner.ownerPhoneNumber}</td>
 			</tr>
 			
 			</c:forEach>

@@ -7,34 +7,36 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.CatBreed;
+
+import model.catBreeds;
 
 /**
- * Servlet implementation class AddCatBreeds
+ * Servlet implementation class DeleteCatBreed
  */
-@WebServlet("/AddCatBreeds")
-public class addCatBreeds extends HttpServlet {
+@WebServlet("/deleteCatBreed")
+public class DeleteCatBreed extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public addCatBreeds() {
+    public DeleteCatBreed() {
         super();
         // TODO Auto-generated constructor stub
     }
+
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		CatBreed b = new CatBreed();
-		CatHelper helper = new CatHelper();
-		b.setBreeds(request.getParameter("catBreeds"));
-		b.setFactsAboutCats(request.getParameter("factsAboutCats"));
-		b.setSize(Double.valueOf(request.getParameter("catSize")));
-		helper.persist(b);
-		getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+		
+			CatHelper helper = new CatHelper ();
+			String name = request.getParameter("name");
+			catBreeds deleteable = helper.searchCatByBreed(name);
+			helper.delete(deleteable);
+			getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+		}
 	}
 
-}

@@ -4,17 +4,17 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Add a Breed</title>
+<title>Add a Cat Breed</title>
 </head>
 <body>
-<form action="addCatBreeds" method="post">
+<form action="addCatBreed" method="post">
 		Cat Breed: <input
-			type="text" name="catBreedName" size="25"/> 
+			type="text" name="breeds" size="25"/><br><br>  
 		
-		Fact about cat: <input
-			type="text" name="factsAboutCat" size="25"/> 
+		Fact About Cat: <input
+			type="text" name="factsAboutCats" size="25"/><br><br>   
 		
-		Cat size: <input
+		Size of the Cat: <input
 			type="text" name="catSize" size="25"> 
 		<input type="submit"value="Submit" />
 	</form>

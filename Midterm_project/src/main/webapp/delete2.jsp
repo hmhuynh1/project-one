@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Delete Cat</title>
+<title>Delete Address</title>
 </head>
 <body>
 
-	<form action="delateCat" method="post">
-		Enter common name of tree to delete: <input type="text" name="name"
+	<form action="deleteAddress" method="post">
+		Enter the Address to delete: <input type="text" name="name2"
 			size="25"> <input type="submit" value="Delete" />
 	</form>
 </body>

@@ -7,20 +7,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.catBreeds;
+import model.OwnerAddress;
+
 
 
 /**
  * Servlet implementation class UpdateCat
  */
-@WebServlet("/updateCat")
-public class UpdateCat extends HttpServlet {
+@WebServlet("/updateAddress")
+public class UpdateAddress extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateCat() {
+    public UpdateAddress() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,18 +31,18 @@ public class UpdateCat extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		CatHelper helper = new CatHelper();
+		AddressHelper helper = new AddressHelper();
 		
 		String oldName = request.getParameter("oldName");
-		String breeds = request.getParameter("breeds");
-		String factsAboutCat = request.getParameter("factsAboutCats");
-		Double catSize = Double.valueOf(request.getParameter("catSize"));
+		String catName = request.getParameter("catName");
+		String ownerAddress = request.getParameter("ownerAddress");
+		Double ownerPhoneNumber = Double.valueOf(request.getParameter("ownerPhoneNumber"));
 
-		catBreeds catToUpdate = helper.searchCatByBreed(oldName);
-		catToUpdate.setBreeds(breeds);
-		catToUpdate.setFactsAboutCats(factsAboutCat);
-		catToUpdate.setCatSize(catSize);
-		helper.update(catToUpdate);
+		OwnerAddress addressToUpdate = helper.searchAddress(oldName);
+		addressToUpdate.setCatName(catName);
+		addressToUpdate.setOwnerAddress(ownerAddress);
+		addressToUpdate.setOwnerPhoneNumber(ownerPhoneNumber);
+		helper.update(addressToUpdate);
 		
 		getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 	}

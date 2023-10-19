@@ -6,15 +6,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
+import model.OwnerAddress;
 
 
-import model.catBreeds;
 
-
-public class CatHelper {
+public class AddressHelper {
 	EntityManagerFactory factory = Persistence.createEntityManagerFactory("AboutCats");
 	
-	public void persist(catBreeds model) {
+	public void persist(OwnerAddress model) {
 		EntityManager manager = factory.createEntityManager();
 		manager.getTransaction().begin();
 		manager.persist(model);
@@ -22,41 +21,40 @@ public class CatHelper {
 		manager.close();
 	}
 	
-	public void delete(catBreeds model) {
+	public void delete(OwnerAddress model) {
 		EntityManager manager = factory.createEntityManager();
 		manager.getTransaction().begin();
-		manager.remove(manager.find(catBreeds.class, model.getRowId()));
+		manager.remove(manager.find(OwnerAddress.class, model.getRowId()));
 		manager.getTransaction().commit();
 		manager.close();
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<catBreeds> showAllCatBreed() {
+	public List<OwnerAddress> showAllAddress() {
 		EntityManager manager = factory.createEntityManager();
-		List<catBreeds> allItems = manager.createQuery("SELECT i FROM catBreeds i").getResultList();
+		List<OwnerAddress> allItems = manager.createQuery("SELECT i FROM ownerAddress i").getResultList();
 		manager.close();
 		return allItems;
 		
 	}
 
-	public void update(catBreeds model) {
+	public void update(OwnerAddress model) {
 		EntityManager manager = factory.createEntityManager();
-		catBreeds dbEntity = manager.find(catBreeds.class, model.getRowId());
+		OwnerAddress dbEntity = manager.find(OwnerAddress.class, model.getRowId());
 		manager.getTransaction().begin();
-		dbEntity.setBreeds(model.getBreeds());
-		dbEntity.setFactsAboutCats(model.getFactsAboutCats());
-		dbEntity.setCatSize(model.getCatSize());
+		dbEntity.setCatName(model.getCatName());
+		dbEntity.setOwnerAddress(model.getOwnerAddress());
+		dbEntity.setOwnerPhoneNumber(model.getOwnerPhoneNumber());
 		manager.getTransaction().commit();
 		manager.close();
 	}
 		
 	
-	public catBreeds searchCatByBreed(String oldName) {
+	public OwnerAddress searchAddress(String oldName) {
 		EntityManager manager = factory.createEntityManager();
-		TypedQuery<catBreeds> query = manager.createQuery("SELECT i FROM catBreeds AS i WHERE i.breeds = :breeds", catBreeds.class);
-		query.setParameter("breeds", oldName);
-		catBreeds dbEntity = query.getSingleResult();
+		TypedQuery<OwnerAddress> query = manager.createQuery("SELECT i FROM ownerAddress  AS i WHERE i.catName = :catName", OwnerAddress.class);
+		query.setParameter("catName", oldName);
+		OwnerAddress dbEntity = query.getSingleResult();
 		return dbEntity;
 	}
-
 }
